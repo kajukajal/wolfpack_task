@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error{
+            font-size: 2rem;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for i in form %}
+        {{i.label_tag}}<br>
+        {{i}}{% if i.errors %}<br><br><span class="error">{{i.errors|striptags}}</span>{% endif %}<br><br>
+        {% if form.non_field_errors %}<span class="error">{{form.non_field_errors|striptags}}</span>{% endif %}<br>
+        {% endfor %}
+        <input type="submit" value="signup"><br><br>
+        already have an account&nbsp;&nbsp;<a href="{% url 'login' %}">Signup</a>
+
+
+    </form>
+</body>
+
+</html>
